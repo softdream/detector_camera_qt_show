@@ -1,0 +1,23 @@
+PROJECT(detector)
+
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5.1)
+
+ADD_DEFINITIONS(-std=c++11)
+
+#set the directory of executable files
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
+#find required opencv
+FIND_PACKAGE(OpenCV REQUIRED)
+
+#directory of opencv headers
+INCLUDE_DIRECTORIES(${OpenCV_INCLUDE_DIRS})
+
+AUX_SOURCE_DIRECTORY(${PROJECT_SOURCE_DIR}/src source)
+
+LINK_DIRECTORIES(${OpenCV_LIBRARY_DIRS})
+
+ADD_EXECUTABLE( detector ${source} )
+
+TARGET_LINK_LIBRARIES(detector ${OpenCV_LIBS})
+
